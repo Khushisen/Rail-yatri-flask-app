@@ -1,0 +1,34 @@
+body{
+    background-image: url('/static/image1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.login{
+    text-align: center;
+    margin-left: 500px;
+    margin-bottom:150px ;
+    margin-right: 500px;
+    margin-top: 150px;
+    background-color: white;
+    opacity: 0.8; 
+}
+#button{
+    height: 25px;
+    border: 0cap;
+    border-radius: 4px;
+    background-color:steelblue;
+    font-size: 15px;
+    width: 160px;
+}
+#button:hover{
+    color:beige;
+    background-color:blue;
+}
+#button:active{
+    color:beige;
+    background-color:black;
+}
+a{
+    text-decoration: none;
+}

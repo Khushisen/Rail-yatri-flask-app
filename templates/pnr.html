@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNR status</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      table{
+        width : 200px; 
+        height: 200px;
+      }
+        ul{
+            font-size: larger;
+        }
+        .pnr{
+          text-align: center;
+          padding: 50px 20px 50px 20px;
+          margin-left: 400px;
+          margin-right: 400px;
+          margin-top: 100px;
+          margin-bottom: 100px;
+          background-color: white;
+          opacity: 0.7;
+        }
+        body{
+          background-image: url('/static/image3.jpg'); 
+          background-repeat:no-repeat; 
+          background-size: 1600px 800px;
+        }
+        .button{
+          border-radius: 10px;
+          padding: 2px 30px 2px 30px;
+        }
+        .button:hover{
+          color: white;
+          background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="font-size: larger;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/home"><img src="/static/rail yatri logo.jpeg"  width="80px" height="80px"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav" style="float: right;">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pnr">Check PNR Status</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/track">Track Your Train</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login"><img src="/static/logout.png" width="30px" height="30px"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main>
+      <div class="pnr">
+      <form action="/pnr" method="post">
+      <label style="font-size: large;"><b>Enter PNR number</b></label>
+      <br>
+      <br>
+      <input name="pnr" type="text" placeholder="eg-1234567890" required>
+      <br>
+      <br>
+      <button class="button" type="submit">Search</button>
+      </form>
+    <br>
+    <br>
+    <div>
+      {% if msg %}
+      {{msg}}
+      {% endif %}
+    </div>
+    </div>
+    <div>
+      <div class="d-flex flex-row mb-3">
+        <div class="p-2">
+      {% if d %}
+      <table class="table table-striped">
+        {% for i,j in d.items() %}
+        <tr>
+          <td>{{i}}</td>
+          <td>{{j}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+      {% endif %}
+  
+    <div class="p-2">
+      {% if passenger %}
+      <table class="table table-striped">
+        <tr>
+          <td>S.No</td>
+          <td>Booking Status</td>
+          <td>Current Status</td>
+        </tr>
+      
+         {% for i in passenger %}
+        <tr>
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+          <td>{{i[2]}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+  </div>
+    <br>
+    <br><br>
+</main>
+      <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+          <p>© 2024 Rail Yatri. All rights reserved.</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#" class="text-white">Privacy Policy</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Terms of Use</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Contact Us</a></li>
+          </ul>
+        </div>
+      </footer>
+      
+      <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>
