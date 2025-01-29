@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rail yatri</title>
+    <link rel="stylesheet" type="text/css" href="/static/login.css">
+    <style>
+        #warning{
+            border: 2px solid black;
+            color: brown;
+            background-color: rgb(255, 255, 255);
+            margin-left:30px;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="login">
+            <br>
+            <h2>Login to Rail Yatri</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div>
+            {% for category,message in messages %}
+            <div class="{{category}}">{{message}}</div>
+            {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST", action="/home">
+            <div id="inside_login" style="text-align: center;">
+                <img src="/static/rail yatri logo.jpeg" width="100px" height="100px">
+                <br>
+                <input type="text" name="username" placeholder="username" required>
+                <br>
+                <br>
+                <input type="password" name="password" placeholder="password" required>
+                <br>
+                <button id="button" type="submit">log in</button>
+                <p>Don't have an account? <a href="\signup">Sign up</a></p>
+                <br>
+            </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

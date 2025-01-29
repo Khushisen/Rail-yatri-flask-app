@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rail Yatri</title>
+    <link rel="stylesheet" type="text/css" href="/static/signup.css">
+</head>
+<body>
+    <main>
+        <div class="login">
+            <br>
+            <h2>Sign up to Rail Yatri</h2>
+            {% with messages = get_flashed_messages(with_categories = true ) %}
+            {% if messages %}
+            {% for category,message in messages %}
+            <div class="{{category}}">{{message}}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <form action="{{ url_for('signup') }}" method="POST">
+            <div id="inside_login" style="text-align: center;">
+                <img src="/static/rail yatri logo.jpeg" width="100px" height="100px">
+                <br>
+                <input type="text" name="username" placeholder="username" required>
+                <br>
+                <br><input type="email" name="email" placeholder="email" required>
+                <br>
+                <br>
+                <input type="password" name="password" placeholder="create password" required>
+                <br>
+                <br>
+                <input type="password" name="password" placeholder="confirm password" required>
+                <br>
+                <br>
+                <button id="button" type="submit">Sign up</button>
+            </form>
+                <p>Already have an account? <a href="\login">Login</a></p>
+                <br>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
