@@ -1,5 +1,6 @@
-import os
+
 from flask import Flask,render_template,request,flash,redirect,url_for
+import os
 import requests
 import pymysql
 import secrets
@@ -18,8 +19,11 @@ def get_db_connection():
     )
 load_dotenv()
 app=Flask(__name__)
+rapid_api_key = os.getenv('RAPID_API_KEY')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-@app.route('/login', methods=['GET','POST'])
+
+
+@app.route('/', methods=['GET','POST'])
 def login():
     if request.method=='POST':
         username=request.form.get('username')
@@ -60,14 +64,17 @@ def signup():
             print(f"MySQL Error: {e}")
             connection.rollback()
         finally:
-            cursor.close()
-            connection.close()
+            if connection:
+                cursor.close()
+                connection.close()
          
     return render_template('signup.html')
 
 
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        return render_template('home.html')
     return render_template('home.html')
 
 
@@ -79,7 +86,7 @@ def pnr():
         url = f"https://irctc-indian-railway-pnr-status.p.rapidapi.com/getPNRStatus/{data}"
 
         headers = {
-	    "x-rapidapi-key": "9aa2d44274msh55fc767a2614668p1fb690jsn8164e7ba4207",
+	    "x-rapidapi-key": "{rapid_api_key}",
 	    "x-rapidapi-host": "irctc-indian-railway-pnr-status.p.rapidapi.com"
         }
         response = requests.get(url, headers=headers)
