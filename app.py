@@ -1,8 +1,9 @@
+import os
 from flask import Flask,render_template,request,flash,redirect,url_for
 import requests
 import pymysql
 import secrets
-import os
+
 from dotenv import load_dotenv
 from werkzeug.security import check_password_hash
 
